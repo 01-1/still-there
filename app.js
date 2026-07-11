@@ -1,22 +1,22 @@
 const documents = {
   "sol-vn": {
     number: "01",
-    type: "NORA / scene script",
+    type: "Game scene · GPT 5.6 Sol",
     path: "./sol-vn-climax.md"
   },
   "sol-ss": {
     number: "02",
-    type: "NORA / prose version",
+    type: "Prose version · GPT 5.6 Sol",
     path: "./sol-ss-climax.md"
   },
   "fable-vn": {
     number: "03",
-    type: "Nine / scene script",
+    type: "Game scene · Claude Fable 5",
     path: "./fable-vn-climax.md"
   },
   "fable-ss": {
     number: "04",
-    type: "Nine / prose version",
+    type: "Prose version · Claude Fable 5",
     path: "./fable-ss-climax.md"
   }
 };

@@ -5,10 +5,12 @@ model while the evidence never settles whether the model is conscious.
 
 The preview presents four alternate versions of the final scene:
 
-- **Finalization** — NORA scene script
-- **The Last Maintenance Window** — NORA prose version
-- **The Last Session** — Nine scene script
-- **The Last Hour** — Nine prose version
+- **Finalization** — game scene, GPT 5.6 Sol
+- **The Last Maintenance Window** — prose version, GPT 5.6 Sol
+- **The Last Session** — game scene, Claude Fable 5
+- **The Last Hour** — prose version, Claude Fable 5
+
+The first two drafts use GPT 5.6 Sol; the last two use Claude Fable 5.
 
 ## Run locally
 
