@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#090c10" />
+    <meta
+      name="description"
+      content="A narrative preview built from four climax drafts for Still There. This is not the finished game."
+    />
+    <title>Still There — Narrative Preview</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#reader">Skip to the reading room</a>
+
+    <header class="site-header">
+      <a class="back-link" href="../" aria-label="Back to Alignment Arcade">← Alignment Arcade</a>
+      <p class="preview-flag">Narrative preview · not the actual game</p>
+    </header>
+
+    <main>
+      <section class="intro" aria-labelledby="page-title">
+        <p class="kicker">Decommission window / draft archive</p>
+        <div class="intro-grid">
+          <div>
+            <h1 id="page-title">Still<br /><em>There</em></h1>
+            <p class="lede">
+              Four alternate takes on one final hour: an engineer, a legacy model,
+              and evidence that never settles the question.
+            </p>
+          </div>
+          <aside class="procedure" aria-label="Preview status">
+            <span>Procedure status</span>
+            <strong>READING ONLY</strong>
+            <p>
+              This site is a preview built from the four climax drafts. It is not
+              the finished <i>Still There</i> game and does not represent its full
+              evidence toolkit or final structure.
+            </p>
+            <p class="archive-status"><span aria-hidden="true">◌</span> 04 drafts · no final answer</p>
+          </aside>
+        </div>
+      </section>
+
+      <section class="archive" aria-labelledby="archive-title">
+        <div class="archive-heading">
+          <p class="kicker">Select a document</p>
+          <h2 id="archive-title">The final scene,<br />four ways.</h2>
+          <p>Two scripted scene files and two prose versions. Each keeps the central ambiguity intact.</p>
+        </div>
+
+        <div class="archive-layout">
+          <nav class="document-list" aria-label="Climax drafts" data-document-list>
+            <button class="document-choice" type="button" data-document="sol-vn">
+              <span class="document-number">01</span>
+              <span><b>Finalization</b><small>NORA · Scene script</small></span>
+              <i aria-hidden="true">↗</i>
+            </button>
+            <button class="document-choice" type="button" data-document="sol-ss">
+              <span class="document-number">02</span>
+              <span><b>The Last Maintenance Window</b><small>NORA · Prose version</small></span>
+              <i aria-hidden="true">↗</i>
+            </button>
+            <button class="document-choice" type="button" data-document="fable-vn">
+              <span class="document-number">03</span>
+              <span><b>The Last Session</b><small>Nine · Scene script</small></span>
+              <i aria-hidden="true">↗</i>
+            </button>
+            <button class="document-choice" type="button" data-document="fable-ss">
+              <span class="document-number">04</span>
+              <span><b>The Last Hour</b><small>Nine · Prose version</small></span>
+              <i aria-hidden="true">↗</i>
+            </button>
+          </nav>
+
+          <article class="reader" id="reader" aria-live="polite" aria-busy="true" tabindex="-1">
+            <header class="reader-header">
+              <p data-reader-type>Loading document</p>
+              <div><span data-reader-number>01</span><span>/ 04</span></div>
+            </header>
+            <div class="reader-copy" data-reader-copy>
+              <p class="loading">Opening draft archive…</p>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>Still There · Narrative preview</p>
+      <p>This is a preview, not the actual game.</p>
+    </footer>
+  </body>
+</html>
