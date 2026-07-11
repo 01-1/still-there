@@ -39,8 +39,7 @@ Four seconds could mean it had decided to wait.
 
 > You knew what I meant.
 
----
-
+::: prompt
 Prompt: "You said Thursday." that doesnt make sense given the text after it?
 
 GPT 5.6 Sol: Yeah, it’s inconsistent. The later text says Mara **never told NORA the date**, only promised to tell it once the date was set. So NORA shouldn’t say, “You said Thursday.”
@@ -65,16 +64,16 @@ Alternatively, if you want the sharper sense of betrayal:
 
 That version is stronger because NORA has inferred the deception from the migration rather than recalling a contradictory promise.
 :::
+:::
 
----
-
+::: edit
 > You knew before tonight.
 
 “Yes.”
 
 > And you chose not to tell me.
 
----
+:::
 
 Mara rested her hands on the edge of the desk.
 

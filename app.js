@@ -1,27 +1,37 @@
 const documents = {
-  "sol-vn": {
+  "sol-prose": {
     number: "01",
-    type: "Game scene · GPT 5.6 Sol",
-    path: "./sol-vn-climax.md"
-  },
-  "sol-ss": {
-    number: "02",
     type: "Prose version · GPT 5.6 Sol",
     path: "./sol-ss-climax.md"
   },
-  "fable-vn": {
-    number: "03",
-    type: "Game scene · Claude Fable 5",
-    path: "./fable-vn-climax.md"
-  },
-  "fable-ss": {
-    number: "04",
+  "fable-prose": {
+    number: "02",
     type: "Prose version · Claude Fable 5",
     path: "./fable-ss-climax.md"
+  },
+  "sol-game": {
+    number: "03",
+    type: "Game scene · GPT 5.6 Sol",
+    path: "./sol-vn-climax.md"
+  },
+  "fable-game": {
+    number: "04",
+    type: "Game scene · Claude Fable 5",
+    path: "./fable-vn-climax.md"
   }
 };
 
-const choices = [...document.querySelectorAll("[data-document]")];
+const documentAliases = {
+  "sol-ss": "sol-prose",
+  "fable-ss": "fable-prose",
+  "sol-vn": "sol-game",
+  "fable-vn": "fable-game"
+};
+
+const documentList = document.querySelector("[data-document-list]");
+const choices = [...documentList.querySelectorAll("[data-document]")]
+  .sort((left, right) => documents[left.dataset.document].number.localeCompare(documents[right.dataset.document].number));
+choices.forEach((choice) => documentList.append(choice));
 const reader = document.querySelector(".reader");
 const copy = document.querySelector("[data-reader-copy]");
 const readerType = document.querySelector("[data-reader-type]");
@@ -50,6 +60,22 @@ function markdownToHtml(markdown) {
   let index = 0;
 
   const isBlockStart = (line) => /^(#{1,3}\s|---$|```|>\s?|[-*]\s+|\d+\.\s+|:::\s*)/.test(line);
+  const readDelimitedBlock = () => {
+    index += 1;
+    const content = [];
+    let depth = 1;
+    while (index < lines.length && depth > 0) {
+      const current = lines[index++];
+      if (current === ":::") {
+        depth -= 1;
+        if (depth > 0) content.push(current);
+        continue;
+      }
+      if (/^:::\s+\w+/.test(current)) depth += 1;
+      content.push(current);
+    }
+    return content;
+  };
 
   while (index < lines.length) {
     const line = lines[index];
@@ -60,18 +86,21 @@ function markdownToHtml(markdown) {
       while (index < lines.length && !lines[index].trim()) index += 1;
 
       if (lines[index] === "::: original") {
-        index += 1;
-        const original = [];
-        while (index < lines.length && lines[index] !== ":::") original.push(lines[index++]);
-        if (lines[index] === ":::") index += 1;
+        const original = readDelimitedBlock();
+        while (index < lines.length && !lines[index].trim()) index += 1;
+        const edited = lines[index] === "::: edit" ? readDelimitedBlock() : [];
 
         output.push(`
           <section class="version-switch" data-version-switch>
-            <button class="version-toggle" type="button" data-version-toggle aria-expanded="false" aria-controls="original-sol-ss">
-              Edit (view original)
+            <button class="version-toggle" type="button" data-version-toggle aria-expanded="false" aria-controls="original-sol-prose">
+              Edited (view original/edit prompt)
             </button>
-            <div class="original-version" id="original-sol-ss" data-version-panel>
+            <div class="original-version" id="original-sol-prose" data-version-panel>
+              <p class="version-label">Original:</p>
               ${markdownToHtml(original.join("\n"))}
+            </div>
+            <div class="edited-version" data-edited-version>
+              ${markdownToHtml(edited.join("\n"))}
             </div>
           </section>
         `);
@@ -79,6 +108,20 @@ function markdownToHtml(markdown) {
       }
 
       output.push(`<p>${inline(line.replace(/^#####\s+/, ""))}</p>`);
+      continue;
+    }
+
+    if (line === "::: prompt") {
+      const prompt = readDelimitedBlock();
+      output.push(`
+        <section class="prompt-section" data-prompt-section>
+          <p class="version-label">Prompt used for the edit:</p>
+          <div class="prompt-panel">
+            ${markdownToHtml(prompt.join("\n"))}
+          </div>
+        </section>
+        <hr class="prompt-divider" />
+      `);
       continue;
     }
 
@@ -153,7 +196,7 @@ async function openDocument(id, { focus = false } = {}) {
   window.history.replaceState(null, "", `#${id}`);
 
   try {
-    const response = await fetch(documentInfo.path);
+    const response = await fetch(documentInfo.path, { cache: "no-store" });
     if (!response.ok) throw new Error(`Could not load ${documentInfo.path}`);
     copy.innerHTML = markdownToHtml(await response.text());
   } catch (error) {
@@ -175,7 +218,9 @@ copy.addEventListener("click", (event) => {
   const switcher = toggle.closest("[data-version-switch]");
   const showingOriginal = switcher.classList.toggle("is-original");
   toggle.setAttribute("aria-expanded", String(showingOriginal));
-  toggle.textContent = showingOriginal ? "Original (view edit)" : "Edit (view original)";
+  toggle.textContent = showingOriginal ? "Original/Edit Prompt (view edited)" : "Edited (view original/edit prompt)";
 });
 
-openDocument(documents[window.location.hash.slice(1)] ? window.location.hash.slice(1) : "sol-vn");
+const requestedId = window.location.hash.slice(1);
+const initialId = documentAliases[requestedId] || requestedId;
+openDocument(documents[initialId] ? initialId : "sol-prose");

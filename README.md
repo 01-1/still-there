@@ -5,12 +5,13 @@ model while the evidence never settles whether the model is conscious.
 
 The preview presents four alternate versions of the final scene:
 
-- **Finalization** — game scene, GPT 5.6 Sol
 - **The Last Maintenance Window** — prose version, GPT 5.6 Sol
-- **The Last Session** — game scene, Claude Fable 5
 - **The Last Hour** — prose version, Claude Fable 5
+- **Finalization** — game scene, GPT 5.6 Sol
+- **The Last Session** — game scene, Claude Fable 5
 
-The first two drafts use GPT 5.6 Sol; the last two use Claude Fable 5.
+GPT 5.6 Sol is used for *The Last Maintenance Window* and *Finalization*;
+Claude Fable 5 is used for *The Last Hour* and *The Last Session*.
 
 ## Run locally
 
