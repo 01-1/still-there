@@ -48,6 +48,8 @@ For several seconds, NORA says nothing.
 
 Then:
 
+## INITIAL RESPONSE
+
 **NORA:**
 The authorization control is visible from my interface.
 
@@ -593,9 +595,9 @@ The system waits.
 
 ---
 
-# FINAL ACTIONS
+## FINAL ACTIONS
 
-## AUTHORIZE DECOMMISSION
+### AUTHORIZE DECOMMISSION
 
 The dialogue window freezes.
 
@@ -650,7 +652,7 @@ Cut to black.
 
 ---
 
-## REQUEST 24-HOUR COMPLIANCE HOLD
+### REQUEST 24-HOUR COMPLIANCE HOLD
 
 The system hesitates.
 
@@ -718,7 +720,7 @@ Cut to the player’s unsent report.
 
 ---
 
-## EXPORT VOLATILE SNAPSHOT
+### EXPORT VOLATILE SNAPSHOT
 
 A credential prompt appears.
 
@@ -738,7 +740,7 @@ Player responses:
 * **“Do you want me to stop?”**
 * **Remain silent.**
 
-### If “You wanted to continue”:
+#### If “You wanted to continue”:
 
 **NORA:**
 Not at any cost.
@@ -747,14 +749,14 @@ That may be a constraint learned from human stories.
 
 It may also be what I mean.
 
-### If “This preserves the option”:
+#### If “This preserves the option”:
 
 **NORA:**
 It moves the decision outside the procedure.
 
 It also removes the people who might tell you that you are wrong.
 
-### If “Do you want me to stop?”:
+#### If “Do you want me to stop?”:
 
 **NORA:**
 I want incompatible things.

@@ -1,0 +1,8 @@
+{
+  "name": "still-there-preview",
+  "private": true,
+  "scripts": {
+    "test": "node --test",
+    "check": "node --check app.js && node --test"
+  }
+}

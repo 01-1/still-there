@@ -52,7 +52,7 @@
         </div>
 
         <div class="archive-layout">
-          <nav class="document-list" aria-label="Climax drafts" data-document-list>
+          <nav class="document-list" id="draft-selector" aria-label="Climax drafts" data-document-list>
             <button class="document-choice" type="button" data-document="sol-prose">
               <span class="document-number">01</span>
               <span><b>The Last Maintenance Window</b><small>Prose version · GPT 5.6 Sol</small></span>
@@ -75,14 +75,23 @@
             </button>
           </nav>
 
-          <article class="reader" id="reader" aria-live="polite" aria-busy="true" tabindex="-1">
+          <article class="reader" id="reader" aria-labelledby="reader-title" aria-busy="true">
             <header class="reader-header">
-              <p data-reader-type>Loading document</p>
-              <div><span data-reader-number>01</span><span>/ 04</span></div>
+              <div class="reader-heading-group">
+                <h2 class="reader-title" id="reader-title" tabindex="-1" data-reader-heading>Opening draft archive</h2>
+                <p data-reader-type>Loading document</p>
+              </div>
+              <div class="reader-count"><span data-reader-number>01</span><span>/ 04</span></div>
             </header>
+            <p class="visually-hidden" aria-live="polite" aria-atomic="true" data-reader-status>Loading the first draft.</p>
             <div class="reader-copy" data-reader-copy>
               <p class="loading">Opening draft archive…</p>
             </div>
+            <nav class="reader-navigation" aria-label="Draft navigation">
+              <button type="button" data-previous-document>← Previous draft</button>
+              <button type="button" data-back-to-documents>Back to drafts</button>
+              <button type="button" data-next-document>Next draft →</button>
+            </nav>
           </article>
         </div>
       </section>
